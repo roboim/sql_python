@@ -55,18 +55,18 @@ class DataBaseStore:
                 firstname = data_client[1]
                 email = data_client[2]
 
-            cur.execute("""
-            INSERT INTO Client(surname, firstname, email) VALUES(%s, %s, %s);
-            """, (surname, firstname, email))
-            conn.commit()  # фиксируем в БД
+            try:
+                cur.execute("""
+                INSERT INTO Client(surname, firstname, email) VALUES(%s, %s, %s);
+                """, (surname, firstname, email))
+                conn.commit()  # фиксируем в БД
 
-            # Необходимо написать функцию проверки корректности данных!
-
-            print(f'\nУспешно введены данные.'
-                  f'\n Фамилия: {surname}'
-                  f'\n Имя: {firstname}'
-                  f'\n e-mail: {email}')
-
+                print(f'\nУспешно введены данные.'
+                      f'\n Фамилия: {surname}'
+                      f'\n Имя: {firstname}'
+                      f'\n e-mail: {email}')
+            except:
+                print('Ошибка ввода или заказчик с данным e-mail уже существует!')
 
 
 database_dbs = "musicstoreclients"
