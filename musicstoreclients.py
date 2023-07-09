@@ -188,6 +188,8 @@ class DataBaseStore:
             except:
                 print(f'Ошибка поиска!')
 
+print('Для удаления таблиц при проверке используйте функцию: db_store.create_dbs(connection,True)')
+
 database_dbs = "postgres"
 user_dbs="postgres"
 password_dbs=input("ВВЕДИТЕ ПАРОЛЬ, ПОЖАЛУЙСТА, от postgres: ")
@@ -207,7 +209,7 @@ cl_5 = Person("Фамилия","Имя", "Почта@COSMOS.RU", "+77777777777")
 
 
 with psycopg2.connect(database=database_dbs, user=user_dbs, password=password_dbs) as connection:
-    db_store.create_dbs(connection,True)
+    db_store.create_dbs(connection,False)
     db_store.add_client_dbs(connection, cl_5)
     db_store.add_client_dbs(connection,cl_1)
     db_store.add_client_dbs(connection,cl_2)
